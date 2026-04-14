@@ -78,45 +78,6 @@
       text-transform: uppercase;
     }
 
-    .section-nav {
-      position: sticky;
-      top: 64px;
-      z-index: 90;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0.75rem 2rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .section-nav-inner::-webkit-scrollbar {
-      display: none;
-    }
-
-    .section-nav a {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--mid);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-    }
-
-    .section-nav a:hover {
-      color: var(--forest);
-    }
-
     .hero {
       margin-top: 64px;
       background: linear-gradient(135deg, rgba(0,77,38,0.95), rgba(0,102,51,0.92));
@@ -233,7 +194,6 @@
 
     section {
       padding: 72px 2rem;
-      scroll-margin-top: 128px;
     }
 
     section:nth-of-type(odd) {
@@ -366,10 +326,30 @@
     }
 
     .impact-card {
-      background: var(--white);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(232,240,232,0.55) 100%);
       border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem 1.6rem;
+      border-radius: 14px;
+      padding: 1.6rem 1.6rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .impact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--forest) 0%, var(--yellow) 100%);
+    }
+
+    .impact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.07);
+      border-color: #bfd6bf;
     }
 
     .impact-card h3 {
@@ -377,14 +357,17 @@
       font-weight: 700;
       font-size: 0.84rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--forest);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
     }
 
     .impact-card p {
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       margin-bottom: 0;
+      color: #4a4a4a;
+      line-height: 1.75;
     }
 
     .timeline {
@@ -554,7 +537,6 @@
       background: var(--cream);
       padding: 72px 2rem;
       text-align: center;
-      scroll-margin-top: 128px;
     }
 
     .cta-inner {
@@ -581,7 +563,6 @@
     .cta-card p {
       margin-bottom: 0.3rem;
       font-size: 0.95rem;
-      text-align: left;
     }
 
     .cta-card a {
@@ -660,15 +641,6 @@
         display: none;
       }
 
-      .section-nav {
-        top: 64px;
-      }
-
-      .section-nav-inner {
-        padding: 0.7rem 1.25rem;
-        gap: 1rem;
-      }
-
       .hero {
         padding: 62px 1.25rem 54px;
       }
@@ -705,17 +677,6 @@
     <span class="nav-tagline">Feeding rural kids. Strengthening the people who serve them.</span>
   </nav>
 
-  <div class="section-nav">
-    <div class="section-nav-inner">
-      <a href="#best-fit">Best Fit</a>
-      <a href="#paths">Paths</a>
-      <a href="#impact">Impact</a>
-      <a href="#process">Process</a>
-      <a href="#roles">Roles</a>
-      <a href="#start">Start</a>
-    </div>
-  </div>
-
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
@@ -745,7 +706,7 @@
   </div>
   <div class="divider"></div>
 
-  <section id="best-fit">
+  <section>
     <div class="section-inner fade-in">
       <p class="section-label">Best Fit</p>
       <h2>Who this model is built for</h2>
@@ -770,7 +731,7 @@
     </div>
   </section>
 
-  <section id="paths">
+  <section>
     <div class="section-inner fade-in">
       <p class="section-label">How You Can Move Forward</p>
       <h2>Three paths, one goal: reach more children</h2>
@@ -804,10 +765,11 @@
     </div>
   </section>
 
-  <section id="impact">
+  <section>
     <div class="section-inner fade-in">
       <p class="section-label">What This Makes Possible</p>
       <h2>So you can reach more children</h2>
+      <p class="lead">This model is designed to help sponsors expand access, operate more clearly, and build a stronger program over time.</p>
       <div class="impact-grid">
         <div class="impact-card">
           <h3>More families reached</h3>
@@ -829,11 +791,15 @@
           <h3>Greater confidence over time</h3>
           <p>What begins as a summer program can become a stronger operating model year after year, with each season building toward better reach and execution.</p>
         </div>
+        <div class="impact-card">
+          <h3>Less burden on your team</h3>
+          <p>Your organization can stay focused on community leadership and final decisions while RuralBites supports the operational structure around the work.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="process">
+  <section>
     <div class="section-inner fade-in">
       <p class="section-label">The Process</p>
       <h2>What the partnership looks like</h2>
@@ -875,7 +841,7 @@
     </div>
   </section>
 
-  <section id="roles">
+  <section>
     <div class="section-inner fade-in">
       <p class="section-label">Clarity Matters</p>
       <h2>How responsibility is structured</h2>
@@ -945,50 +911,11 @@
     </div>
   </div>
 
-  <div class="cta-section" id="start">
+  <div class="cta-section">
     <div class="cta-inner fade-in">
-      <h2>How to move forward</h2>
-      <p>
-        Every community starts from a different place. The next step is simply
-        choosing the path that best fits your goals, timeline, and capacity.
-      </p>
-
+      <h2>How to get started</h2>
+      <p>Every partnership starts with a conversation about your community, your goals, and what rural non-congregate service could realistically look like for the children and families you serve.</p>
       <div class="cta-card">
-        <p class="cta-name">Three ways to move forward</p>
-        <p class="cta-title">Choose the path that fits your community</p>
-
-        <p>
-          <strong>Work within an existing sponsor (fastest path)</strong><br />
-          Stand up a program this summer by working within an existing structure
-          and focusing on reaching more families right away.
-        </p>
-
-        <p style="margin-top:1rem;">
-          <strong>Build toward operating as a sponsor (long-term control)</strong><br />
-          Begin shaping what it would take to operate your own program while making
-          decisions about what is realistic for this summer.
-        </p>
-
-        <p style="margin-top:1rem;">
-          <strong>Blend both approaches</strong><br />
-          Move forward this summer within an existing structure while building
-          toward greater independence over time.
-        </p>
-
-        <p style="margin-top:1.5rem; font-weight:600; color:var(--forest);">
-          Next step
-        </p>
-
-        <p>
-          The most helpful next step is to align on direction and begin mapping what a program could look like for your community.
-        </p>
-
-        <p style="margin-top:1rem; font-weight:700;">
-          👉 What path feels most aligned for your team right now?
-        </p>
-
-        <hr style="margin:1.5rem 0; border:none; border-top:1px solid var(--border);" />
-
         <p class="cta-name">Dom Barrera</p>
         <p class="cta-title">Program Director, RuralBites</p>
         <p><a href="mailto:dom@rural-bites.com">dom@rural-bites.com</a></p>
