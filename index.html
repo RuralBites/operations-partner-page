@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RuralBites — Operations Partner Model</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
       --forest: #006633;
@@ -20,196 +18,999 @@
       --charcoal: #222222;
       --mid: #555555;
       --border: #d4e4d4;
+      --shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: 'Source Serif 4', serif;
-      background: var(--cream);
+      font-family: 'Source Serif 4', Georgia, serif;
+      background-color: var(--cream);
       color: var(--charcoal);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
     }
 
     nav {
       position: fixed;
-      width: 100%;
-      background: var(--forest);
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(0, 102, 51, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 0 2rem;
       height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem;
-      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      text-decoration: none;
     }
 
     .nav-tagline {
-      color: rgba(255,255,255,0.7);
-      font-size: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.68);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
-    .logo-wrap {
-      background: white;
-      padding: 6px 12px;
-      border-radius: 999px;
+    .section-nav {
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .logo-wrap img {
-      height: 36px;
+    .section-nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.75rem 2rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .section-nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .section-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .section-nav a:hover {
+      color: var(--forest);
     }
 
     .hero {
       margin-top: 64px;
-      padding: 80px 2rem;
-      background: var(--forest);
-      color: white;
+      background: linear-gradient(135deg, rgba(0,77,38,0.95), rgba(0,102,51,0.92));
+      padding: 86px 2rem 74px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .section {
-      padding: 70px 2rem;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -70px;
+      left: -50px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(252,222,89,0.08);
+      pointer-events: none;
     }
 
-    h1, h2 {
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
       font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 1.1rem;
     }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .hero-body p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.84);
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .hero-image-wrap {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hero-image {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .hero-image-caption {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      padding-top: 0.25rem;
+    }
+
+    .divider {
+      height: 5px;
+      background: var(--yellow);
+    }
+
+    section {
+      padding: 72px 2rem;
+      scroll-margin-top: 128px;
+    }
+
+    section:nth-of-type(odd) {
+      background: var(--white);
+    }
+
+    section:nth-of-type(even) {
+      background: var(--cream);
+    }
+
+    .section-inner {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 34px;
+      background: var(--yellow);
+      border-radius: 2px;
     }
 
     h2 {
-      font-size: 28px;
-      margin-bottom: 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.45rem, 3.5vw, 2.05rem);
       color: var(--forest);
+      line-height: 1.22;
+      margin-bottom: 1.3rem;
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      font-size: 1.06rem;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 1.1rem;
     }
 
     p {
-      line-height: 1.7;
+      font-size: 1rem;
       color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 1rem;
     }
 
-    .cards {
-      display: grid;
-      gap: 16px;
-      margin-top: 20px;
+    .service-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+      margin-top: 2rem;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      border: 1px solid var(--border);
+    .service-card {
+      border: 1.5px solid var(--border);
       border-radius: 8px;
+      padding: 2rem 2.1rem;
+      background: var(--white);
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--forest);
+      border-radius: 8px 0 0 8px;
+    }
+
+    .service-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.96rem;
+      color: var(--forest);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .what-it-means {
+      background: var(--forest-light);
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .what-it-means p {
+      font-size: 0.92rem;
+      color: var(--forest-dark);
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    .what-it-means strong {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 680px) {
+      .impact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .impact-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem 1.6rem;
+    }
+
+    .impact-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--forest);
+      margin-bottom: 0.7rem;
+    }
+
+    .impact-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .timeline {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1.4rem;
+      position: relative;
+    }
+
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 36px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-dot {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+      z-index: 1;
+    }
+
+    .timeline-dot span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      color: var(--yellow);
+    }
+
+    .timeline-content {
+      padding-bottom: 2rem;
+      flex: 1;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--forest);
+      margin-bottom: 0.45rem;
+    }
+
+    .resp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 620px) {
+      .resp-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .resp-col h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0;
+    }
+
+    .resp-col.ruralbites h3 {
+      background: var(--forest);
+      color: var(--yellow);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .resp-col.sponsor h3 {
+      background: var(--charcoal);
+      color: var(--white);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .resp-list {
+      list-style: none;
+      border: 1.5px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .resp-list li {
+      padding: 0.78rem 1rem;
+      font-size: 0.92rem;
+      color: var(--mid);
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .resp-list li:last-child {
+      border-bottom: none;
+    }
+
+    .resp-list li::before {
+      content: '✓ ';
+      font-weight: 700;
+      margin-right: 0.2rem;
+    }
+
+    .ruralbites .resp-list li::before {
+      color: var(--forest);
+    }
+
+    .sponsor .resp-list li::before {
+      color: var(--charcoal);
+    }
+
+    .resp-note {
+      margin-top: 1.4rem;
+      padding: 1.1rem 1.3rem;
+      background: var(--forest-light);
+      border-radius: 8px;
+      border-left: 4px solid var(--forest);
+    }
+
+    .resp-note p {
+      font-size: 0.92rem;
+      color: var(--forest-dark);
+      margin-bottom: 0;
+    }
+
+    .bottom-line {
+      background: var(--forest);
+      padding: 58px 2rem;
+      text-align: center;
+    }
+
+    .bottom-line-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .bottom-line p {
+      font-size: 1.12rem;
+      color: var(--white);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .bottom-line strong {
+      color: var(--yellow);
     }
 
     .cta-section {
-      padding: 80px 2rem;
       background: var(--cream);
+      padding: 72px 2rem;
+      text-align: center;
+      scroll-margin-top: 128px;
+    }
+
+    .cta-inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .cta-inner h2,
+    .cta-inner p {
       text-align: center;
     }
 
     .cta-card {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 24px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
       border-radius: 8px;
-      max-width: 600px;
-      margin: 20px auto 0;
+      padding: 2rem 2.2rem;
+      display: inline-block;
+      text-align: left;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+
+    .cta-card p {
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
       text-align: left;
     }
 
-    a {
+    .cta-card a {
       color: var(--forest);
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
     }
 
+    .cta-card a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--forest);
+      margin-bottom: 0.15rem !important;
+    }
+
+    .cta-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.1rem !important;
+    }
+
+    footer {
+      background: var(--forest-dark);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 0;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image-wrap {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        padding: 0 1.2rem;
+      }
+
+      .nav-tagline {
+        display: none;
+      }
+
+      .section-nav {
+        top: 64px;
+      }
+
+      .section-nav-inner {
+        padding: 0.7rem 1.25rem;
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 62px 1.25rem 54px;
+      }
+
+      section,
+      .cta-section,
+      .bottom-line {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .hero-image-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image img {
+        height: 220px;
+      }
+
+      .service-card,
+      .cta-card {
+        padding: 1.5rem;
+      }
+    }
   </style>
 </head>
-
 <body>
-
-<nav>
-  <div class="logo-wrap">
-    <img src="https://rtqobxqqxprhfgbvvniq.supabase.co/storage/v1/object/public/blog-images/The%20infrastructure%20behind%20every%20meal%20delivered..png" />
-  </div>
-  <div class="nav-tagline">Feeding rural kids. Strengthening the people who serve them.</div>
-</nav>
-
-<div class="hero">
-  <div class="container">
-    <h1>The infrastructure to help sponsors reach more rural children</h1>
-    <p>RuralBites helps sponsors operate rural non-congregate meal programs with the structure, coordination, and support needed to expand access.</p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="container">
-    <h2>Three paths, one goal</h2>
-    <div class="cards">
-      <div class="card">
-        <strong>Already a Sponsor</strong>
-        <p>Strengthen your current program and expand access with better structure.</p>
+  <nav>
+    <a class="nav-logo" href="https://rural-bites.com" style="display:flex; align-items:center;">
+      <div style="background:rgba(255,255,255,0.96); padding:6px 12px; border-radius:999px; display:flex; align-items:center;">
+        <img src="https://rtqobxqqxprhfgbvvniq.supabase.co/storage/v1/object/public/blog-images/The%20infrastructure%20behind%20every%20meal%20delivered..png" alt="RuralBites logo" style="height:36px; max-width:160px; width:auto; display:block;" />
       </div>
+    </a>
+    <span class="nav-tagline">Feeding rural kids. Strengthening the people who serve them.</span>
+  </nav>
 
-      <div class="card">
-        <strong>Becoming a Sponsor</strong>
-        <p>Build toward running your own program with clarity and confidence.</p>
+  <div class="section-nav">
+    <div class="section-nav-inner">
+      <a href="#best-fit">Best Fit</a>
+      <a href="#paths">Paths</a>
+      <a href="#impact">Impact</a>
+      <a href="#process">Process</a>
+      <a href="#roles">Roles</a>
+      <a href="#start">Start</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Operations Partner Model</p>
+        <h1>The infrastructure to help sponsors <em>reach more rural children.</em></h1>
+        <div class="hero-body">
+          <p>RuralBites helps sponsors operate rural non-congregate meal programs with the infrastructure and support needed to reach more children in rural communities.</p>
+          <p>We work alongside your team so your program can expand access without requiring you to build every operational piece on your own.</p>
+          <p>For communities that want to move quickly this summer or build toward a stronger long-term model, RuralBites provides the structure and support to move forward with confidence.</p>
+        </div>
       </div>
-
-      <div class="card">
-        <strong>Partnering with a Sponsor</strong>
-        <p>Move faster by working within an existing structure while serving your community.</p>
+      <div class="hero-image-wrap">
+        <div>
+          <div class="hero-image">
+            <img src="https://rtqobxqqxprhfgbvvniq.supabase.co/storage/v1/object/public/blog-images/indiana-sfsp-rural-delivery-family-2026.jpg" alt="Family receiving rural meal support" />
+          </div>
+          <p class="hero-image-caption">Household-level meal access</p>
+        </div>
+        <div>
+          <div class="hero-image">
+            <img src="https://rtqobxqqxprhfgbvvniq.supabase.co/storage/v1/object/public/blog-images/montana-sfsp-rural-delivery-family-2026.jpg" alt="Rural family receiving summer meal support" />
+          </div>
+          <p class="hero-image-caption">Built for rural communities</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="divider"></div>
 
-<!-- 🔥 UPDATED CTA SECTION -->
+  <section id="best-fit">
+    <div class="section-inner fade-in">
+      <p class="section-label">Best Fit</p>
+      <h2>Who this model is built for</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h3>New sponsors</h3>
+          <p>Organizations exploring rural non-congregate service that want a clearer path forward without building everything from scratch.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Existing sponsors</h3>
+          <p>Programs that already serve children and want stronger structure, better coordination, and more confidence as they expand.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Tribal communities</h3>
+          <p>Communities looking for a model that respects local geography, relationships, and the realities of serving children across rural areas.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Rural service areas</h3>
+          <p>Areas where children are eligible but access is limited by distance, transportation, or a model that does not fully fit rural conditions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="cta-section">
-  <div class="container">
-    <h2>How to move forward</h2>
-    <p>
-      Every community starts from a different place. The next step is simply
-      choosing the path that best fits your goals, timeline, and capacity.
-    </p>
+  <section id="paths">
+    <div class="section-inner fade-in">
+      <p class="section-label">How You Can Move Forward</p>
+      <h2>Three paths, one goal: reach more children</h2>
+      <p class="lead">Every community starts from a different place. RuralBites meets you where you are and helps you move forward in a way that is realistic, compliant, and aligned with your goals.</p>
 
-    <div class="cta-card">
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>Path 1 — Already a Sponsor</h3>
+          <p>You already have approval and experience operating SFSP. The conversation shifts to how the program is running today, where access is being missed, and what support would help your team operate more effectively.</p>
+          <div class="what-it-means">
+            <p><strong>What this means:</strong> RuralBites helps strengthen your existing program so you can expand access with more clarity and less operational strain.</p>
+          </div>
+        </div>
 
-      <p><strong>Work within an existing sponsor</strong><br />
-      Move quickly this summer by focusing on reaching more families right away.</p>
+        <div class="service-card">
+          <h3>Path 2 — Becoming a Sponsor</h3>
+          <p>You are exploring what it would take to operate your own program. This includes understanding the structure, the commitment, and what is realistic within your timeline and community context.</p>
+          <div class="what-it-means">
+            <p><strong>What this means:</strong> RuralBites helps you think through the operational path so you can make informed decisions and build toward stronger long-term control.</p>
+          </div>
+        </div>
 
-      <p style="margin-top:1rem;"><strong>Build toward operating as a sponsor</strong><br />
-      Shape what it would take to run your own program long term.</p>
+        <div class="service-card">
+          <h3>Path 3 — Partnering with a Sponsor</h3>
+          <p>You want to serve your community without taking on every administrative responsibility directly. In that case, the model may involve working alongside an existing sponsor while focusing locally on access and community fit.</p>
+          <div class="what-it-means">
+            <p><strong>What this means:</strong> RuralBites helps support a model that can move more quickly while keeping the program grounded in local relationships and community need.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <p style="margin-top:1rem;"><strong>Blend both approaches</strong><br />
-      Move forward now while building toward independence over time.</p>
+  <section id="impact">
+    <div class="section-inner fade-in">
+      <p class="section-label">What This Makes Possible</p>
+      <h2>So you can reach more children</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h3>More families reached</h3>
+          <p>Children who have never been able to access a meal site can be served in ways that better reflect where families actually live.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Better fit for rural communities</h3>
+          <p>Programs can operate in a way that responds to distance, geography, and access barriers instead of relying only on models built for towns and cities.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Stronger local alignment</h3>
+          <p>Communities can build a model that reflects local realities, local relationships, and the way support needs to work on the ground.</p>
+        </div>
+        <div class="impact-card">
+          <h3>More organized operations</h3>
+          <p>Teams gain structure, visibility, and a clearer way to manage the moving pieces that come with rural non-congregate service.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Greater confidence over time</h3>
+          <p>What begins as a summer program can become a stronger operating model year after year, with each season building toward better reach and execution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <p style="margin-top:1.4rem;">
-        The most helpful next step is to align on direction and begin mapping what a program could look like for your community.
-      </p>
+  <section id="process">
+    <div class="section-inner fade-in">
+      <p class="section-label">The Process</p>
+      <h2>What the partnership looks like</h2>
+      <p class="lead">This model follows a clear structure from the first conversation through the end of the season.</p>
 
-      <p style="margin-top:1.2rem;">
-        <strong>What path feels most aligned for your team right now?</strong>
-      </p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"><span>1</span></div>
+          <div class="timeline-content">
+            <h3>Before the season</h3>
+            <p>The process begins with a conversation about your community, your service area, and your goals. From there, a practical plan is built around what your organization is trying to accomplish and what support will matter most.</p>
+          </div>
+        </div>
 
-      <p style="margin-top:1.4rem;">
-        <a href="mailto:dom@rural-bites.com">dom@rural-bites.com</a>
-      </p>
+        <div class="timeline-item">
+          <div class="timeline-dot"><span>2</span></div>
+          <div class="timeline-content">
+            <h3>During the season</h3>
+            <p>RuralBites supports the operational structure around the program so your team can stay focused on serving families, making decisions, and keeping the program moving.</p>
+          </div>
+        </div>
 
+        <div class="timeline-item">
+          <div class="timeline-dot"><span>3</span></div>
+          <div class="timeline-content">
+            <h3>Documentation and reimbursement support</h3>
+            <p>Records are maintained in a more organized way throughout the season so your team has a clearer path when it is time to review documentation and prepare for reimbursement.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"><span>4</span></div>
+          <div class="timeline-content">
+            <h3>End of season</h3>
+            <p>Your team finishes the season with stronger visibility into what worked, what should improve, and what a stronger next season could look like.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roles">
+    <div class="section-inner fade-in">
+      <p class="section-label">Clarity Matters</p>
+      <h2>How responsibility is structured</h2>
+      <p class="lead">This structure is intentional. Your organization remains in control of the program while RuralBites supports the infrastructure around execution.</p>
+
+      <div class="resp-grid">
+        <div class="resp-col ruralbites">
+          <h3>RuralBites Supports</h3>
+          <ul class="resp-list">
+            <li>Program coordination support</li>
+            <li>Family-facing operational support</li>
+            <li>Documentation organization</li>
+            <li>Visibility into program needs and follow-up items</li>
+            <li>Reimbursement readiness support</li>
+          </ul>
+        </div>
+
+        <div class="resp-col sponsor">
+          <h3>Your Organization Retains</h3>
+          <ul class="resp-list">
+            <li>All final compliance decisions</li>
+            <li>Claims submission to your state agency</li>
+            <li>Program governance and final authority</li>
+            <li>Final review of issues requiring organizational action</li>
+            <li>Ownership of community relationships and mission direction</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resp-note">
+        <p>You know your community. You hold the mission. RuralBites provides the infrastructure and support to help your team operate with greater clarity and confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-inner fade-in">
+      <p class="section-label">How It Works Together</p>
+      <h2>You lead. We support.</h2>
+      <p class="lead">This model keeps your organization in control while RuralBites supports the operational structure needed to run a stronger rural non-congregate program.</p>
+
+      <div style="display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+          <div style="flex:1; min-width:220px; background:#ffffff; border:1.5px solid var(--border); padding:1.5rem; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.03);">
+            <h3 style="font-family:Montserrat, sans-serif; color:var(--charcoal); font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.6rem;">You Lead</h3>
+            <p style="font-size:0.95rem; margin-bottom:0;">Program decisions, compliance authority, and community relationships stay with your organization.</p>
+          </div>
+
+          <div style="font-size:1.5rem; color:var(--forest); font-weight:700; line-height:1; padding:0 0.5rem;">→</div>
+
+          <div style="flex:1; min-width:220px; background:var(--forest-light); border:1.5px solid var(--border); padding:1.5rem; border-radius:6px; box-shadow:0 8px 20px rgba(0,0,0,0.03);">
+            <h3 style="font-family:Montserrat, sans-serif; color:var(--forest); font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.6rem;">RuralBites Supports</h3>
+            <p style="font-size:0.95rem; margin-bottom:0;">RuralBites supports the operational systems and documentation your team needs to run the program with greater clarity and consistency.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:0.5rem;">
+          <p style="font-size:1rem; font-weight:600; color:var(--forest); margin-bottom:0;">Result: A program that reaches more children without overextending your team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom-line">
+    <div class="bottom-line-inner">
+      <p><strong>More children are reached.</strong> More families are supported. The program runs with greater clarity, stronger structure, and more confidence.</p>
+    </div>
+  </div>
+
+  <div class="cta-section" id="start">
+    <div class="cta-inner fade-in">
+      <h2>How to move forward</h2>
       <p>
-        <a href="https://rural-bites.com">rural-bites.com</a>
+        Every community starts from a different place. The next step is simply
+        choosing the path that best fits your goals, timeline, and capacity.
       </p>
 
+      <div class="cta-card">
+        <p class="cta-name">Three ways to move forward</p>
+        <p class="cta-title">Choose the path that fits your community</p>
+
+        <p>
+          <strong>Work within an existing sponsor (fastest path)</strong><br />
+          Stand up a program this summer by working within an existing structure
+          and focusing on reaching more families right away.
+        </p>
+
+        <p style="margin-top:1rem;">
+          <strong>Build toward operating as a sponsor (long-term control)</strong><br />
+          Begin shaping what it would take to operate your own program while making
+          decisions about what is realistic for this summer.
+        </p>
+
+        <p style="margin-top:1rem;">
+          <strong>Blend both approaches</strong><br />
+          Move forward this summer within an existing structure while building
+          toward greater independence over time.
+        </p>
+
+        <p style="margin-top:1.5rem; font-weight:600; color:var(--forest);">
+          Next step
+        </p>
+
+        <p>
+          The most helpful next step is to align on direction and begin mapping what a program could look like for your community.
+        </p>
+
+        <p style="margin-top:1rem; font-weight:700;">
+          👉 What path feels most aligned for your team right now?
+        </p>
+
+        <hr style="margin:1.5rem 0; border:none; border-top:1px solid var(--border);" />
+
+        <p class="cta-name">Dom Barrera</p>
+        <p class="cta-title">Program Director, RuralBites</p>
+        <p><a href="mailto:dom@rural-bites.com">dom@rural-bites.com</a></p>
+        <p><a href="https://rural-bites.com" target="_blank" rel="noopener noreferrer">rural-bites.com</a></p>
+      </div>
     </div>
   </div>
-</div>
 
+  <footer>
+    <p>© 2026 RuralBites™ · Feeding rural kids. Strengthening the people who serve them. · rural-bites.com</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
